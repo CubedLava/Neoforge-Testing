@@ -1,5 +1,7 @@
 package net.cubedlava.testing;
 
+import net.cubedlava.testing.item.ModItems;
+import net.minecraft.world.item.CreativeModeTabs;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
@@ -20,7 +22,7 @@ import net.neoforged.neoforge.event.server.ServerStartingEvent;
 // The value here should match an entry in the META-INF/neoforge.mods.toml file
 @Mod(TestMod.MOD_ID)
 public class TestMod {
-    public static final String MOD_ID = "cubedtestmod";
+    public static final String MOD_ID = "testmod";
     private static final Logger LOGGER = LogUtils.getLogger();
 
     // The constructor for the mod class is the first code that is run when your mod is loaded.
@@ -34,6 +36,8 @@ public class TestMod {
         // Do not add this line if there are no @SubscribeEvent-annotated functions in this class, like onServerStarting() below.
         NeoForge.EVENT_BUS.register(this);
 
+        ModItems.register(modEventBus);
+
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
         // Register our mod's ModConfigSpec so that FML can create and load the config file for us
@@ -46,7 +50,9 @@ public class TestMod {
 
     // Add the example block item to the building blocks tab
     private void addCreative(BuildCreativeModeTabContentsEvent event) {
-
+        if(event.getTabKey() == CreativeModeTabs.INGREDIENTS) {
+            event.accept(ModItems.RUBY);
+        }
     }
 
     // You can use SubscribeEvent and let the Event Bus discover methods to call
