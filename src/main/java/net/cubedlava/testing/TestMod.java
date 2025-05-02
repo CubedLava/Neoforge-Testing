@@ -1,5 +1,6 @@
 package net.cubedlava.testing;
 
+import net.cubedlava.testing.block.ModBlocks;
 import net.cubedlava.testing.item.ModItems;
 import net.minecraft.world.item.CreativeModeTabs;
 import org.slf4j.Logger;
@@ -37,6 +38,7 @@ public class TestMod {
         NeoForge.EVENT_BUS.register(this);
 
         ModItems.register(modEventBus);
+        ModBlocks.register(modEventBus);
 
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
@@ -52,6 +54,8 @@ public class TestMod {
     private void addCreative(BuildCreativeModeTabContentsEvent event) {
         if(event.getTabKey() == CreativeModeTabs.INGREDIENTS) {
             event.accept(ModItems.RUBY);
+            event.accept(ModItems.TITANIUM_INGOT);
+            event.accept(ModItems.RAW_TITANIUM);
         }
     }
 
