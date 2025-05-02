@@ -1,5 +1,8 @@
 {
   "item.testmod.ruby": "Ruby",
   "item.testmod.titanium_ingot": "Titanium Ingot",
-  "item.testmod.raw_titanium": "Raw Titanium"
+  "item.testmod.raw_titanium": "Raw Titanium",
+
+  "block.testmod.ruby_block": "Block of Ruby",
+  "block.testmod.ruby_ore": "Ruby Ore"
 }

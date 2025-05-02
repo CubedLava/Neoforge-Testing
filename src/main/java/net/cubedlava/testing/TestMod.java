@@ -1,6 +1,7 @@
 package net.cubedlava.testing;
 
 import net.cubedlava.testing.block.ModBlocks;
+import net.cubedlava.testing.item.ModCreativeModeTabs;
 import net.cubedlava.testing.item.ModItems;
 import net.minecraft.world.item.CreativeModeTabs;
 import org.slf4j.Logger;
@@ -37,6 +38,8 @@ public class TestMod {
         // Do not add this line if there are no @SubscribeEvent-annotated functions in this class, like onServerStarting() below.
         NeoForge.EVENT_BUS.register(this);
 
+        ModCreativeModeTabs.register(modEventBus);
+
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
 
@@ -56,6 +59,11 @@ public class TestMod {
             event.accept(ModItems.RUBY);
             event.accept(ModItems.TITANIUM_INGOT);
             event.accept(ModItems.RAW_TITANIUM);
+        }
+
+        if(event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS) {
+            event.accept(ModBlocks.RUBY_BLOCK);
+            event.accept(ModBlocks.RUBY_ORE);
         }
     }
 
